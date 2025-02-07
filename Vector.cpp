@@ -12,17 +12,17 @@
 
 Vector::Vector()
 {
-  this->vec_ptr = NULL;
-  this->vec_size = 0;
-  this->vec_capacity = 0;
+  vec_ptr = NULL;
+  vec_size = 0;
+  vec_capacity = 0;
 }
 
 Vector::Vector(const Vector &other)
 {
-  vec_size = other.size();
-  vec_capacity = other.capacity();
+  vec_size = other.vec_size;
+  vec_capacity = other.vec_capacity;
 
-  int *vec_ptr = new int[vec_capacity];
+  vec_ptr = new int[vec_capacity];
   for(int i = 0; i < vec_size; i++)
     {
       vec_ptr[i] = other.vec_ptr[i];
@@ -31,51 +31,75 @@ Vector::Vector(const Vector &other)
 
 Vector::~Vector()
 {
-  this->vec_size = 0;
-  this->vec_capacity = 0;
-  delete[] this->vec_ptr;
+  vec_size = 0;
+  vec_capacity = 0;
+  delete[] vec_ptr;
 }
 
-Vector::Vector& operator=(const Vector &other)
+Vector& Vector::operator=(const Vector &other)
 {
-  this->vec_size = *other.size();
-  this->vec_capacity = *other.capacity();
+  vec_size = other.vec_size;
+  vec_capacity = other.vec_capacity;
 
-  int *vec_ptr = new int[vec_capacity];
+  vec_ptr = new int[vec_capacity];
 for(int i = 0; i < vec_size; i++)
   {
-    vec_ptr[i] = *other.vec_ptr[i];
+    vec_ptr[i] = other.vec_ptr[i];
   }
+ return *this;
 }
 
-Vector::size()
+int Vector::size()
 {
   return vec_size;
 }
 
-Vector::capacity()
+int Vector::capacity()
 {
   return vec_capacity;
 }
 
-Vector::push_back(int element)
+void Vector::push_back(int element)
 {
-  if(vec_size + 1 >= vec_capacity)
+  if(vec_size == 0 and vec_capacity == 0)
     {
-      reserve(vec_size + 1);
+      reserve(1);
+      vec_ptr[vec_size] = element;
+      vec_size++;
     }
-  vec_ptr[vec_size + 1] = element;
+  else if(vec_size >= vec_capacity)
+    {
+      reserve(vec_size * 2);
+      vec_ptr[vec_size] = element;
+      vec_size++;
+    }
+  else
+    {
+      vec_ptr[vec_size] = element;
+      vec_size++;
+    }
+}
+void Vector::reserve(int n)
+{
+  int *newPtr = new int[n];
+  for(int i = 0; i < vec_size; i++)
+    {
+      newPtr[i] = vec_ptr[i];
+    }
+  vec_capacity = n;
+  delete[] vec_ptr;
+  vec_ptr = newPtr;
 }
 
-Vector::reserve(int n)
+int& Vector::operator[](unsigned int index)
 {
-  if(vec_capacity <= n)
+  if(index <= (unsigned int)vec_size)
     {
-      vec_capacity *= 2;
+      return vec_ptr[index];
     }
-}
-
-Vector::int& operator[](unsigned int index)
-{
-  return &vec_ptr[index];
+  else
+    {
+      std::cerr << "index out of bounds." << std::endl;
+      return vec_ptr[index];
+    }
 }

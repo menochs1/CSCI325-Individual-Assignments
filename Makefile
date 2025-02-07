@@ -11,7 +11,7 @@ $(TARGET): Vector.o main.o
 Vector.o: Vector.cpp Vector.h
 	$(CC) $(CFLAGS) Vector.cpp
 
-main.o: mian.cpp Vector.h
+main.o: main.cpp Vector.h
 	$(CC) $(CFLAGS) main.cpp
 
 clean:

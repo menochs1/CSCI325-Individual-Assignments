@@ -9,4 +9,4 @@ I ran five tests: a push back test, a brackets test, a size test, an assignment 
   The assignment test uses the overloaded assignment operator to set one vector equal to another and then print out their contents to make sure its working properly.
   Finally, the copy test makes and populates a vector then uses the copy constructor to make a new vector with the contents of the old vector. Then, it outputs the conents of the arrays to make sure they are the same.
 
-The program passed all tests and is working as intended. To rerun the tests, simply rerun the program since they execute automatically with the program.
+The program passed all tests and is working as intended. To rerun the tests, simply rerun the program since they execute automatically with the program. make then ./main will run it.

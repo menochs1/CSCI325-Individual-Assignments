@@ -1,0 +1,12 @@
+Mason Enochs
+2-7-2025
+breif: This program uses 5 tests to test the functionality of a custom made vector class and its implementation
+
+I ran five tests: a push back test, a brackets test, a size test, an assignment test, and a copy test. \
+  The pushback test uses the push_back() method to add integers to the end of the array and tests to make sure it adds the right elements and the righ number of elements
+  The brackets test uses the overloaded [] operator to modify elements in an array to see if it access and modifies the right element in the array.
+  The size test makes two vectors and populates their contents with datat. Then, it outputs the contents of the array usign the size() method as its bound to make sure the size() method is working properly.
+  The assignment test uses the overloaded assignment operator to set one vector equal to another and then print out their contents to make sure its working properly.
+  Finally, the copy test makes and populates a vector then uses the copy constructor to make a new vector with the contents of the old vector. Then, it outputs the conents of the arrays to make sure they are the same.
+
+The program passed all tests and is working as intended. To rerun the tests, simply rerun the program since they execute automatically with the program.
